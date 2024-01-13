@@ -1,0 +1,20 @@
+{
+    "name": "user/todos",
+    "description": "Веб-приложение списка дел",
+    "autoload": {
+        "psr-4": {
+            "User\\Todos\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Seraf-seraf",
+            "email": "serafim123sima@mail.ru"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "symfony/mailer": "^7.0",
+        "phpmailer/phpmailer": "^6.9"
+    }
+}
