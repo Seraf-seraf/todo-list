@@ -9,14 +9,14 @@ $phpmailer = new PHPMailer();
 
 $phpmailer->CharSet = 'utf-8';
 $phpmailer->isSMTP();
-$phpmailer->Host = 'smtp.mail.ru';
+$phpmailer->Host = 'smtp.yourhost.com';
 $phpmailer->SMTPAuth = true;
 
-$phpmailer->Port = 587;
-$phpmailer->Username = 'todo_list@inbox.ru';
-$phpmailer->Password = 'Ab5xQy09sHDsBmrpL1H9';
+$phpmailer->Port = 1337;
+$phpmailer->Username = 'yourmail@mail.ru';
+$phpmailer->Password = 'yourpassword';
 
-$phpmailer->setFrom('todo_list@inbox.ru'); 
+$phpmailer->setFrom('yourmail@mail.ru'); 
 $phpmailer->isHTML(true);                              
 
 $users_tasks_in_day = get_user_tasks_in_day($connect);
