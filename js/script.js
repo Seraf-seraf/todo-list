@@ -1,4 +1,4 @@
-
+p
 const $checkbox = document.querySelector('.show_completed');
 
 if ($checkbox) {
@@ -26,7 +26,7 @@ if($taskCheckboxes) {
       searchParams.set('task_id', task_id);
       searchParams.set('check', is_checked);
 
-      window.location = '/index.php?' + searchParams.toString();;
+      window.location = '/index.php?' + searchParams.toString();
     }
   });
 }
