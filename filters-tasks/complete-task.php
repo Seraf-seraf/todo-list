@@ -17,14 +17,7 @@ if(isset($task_id) && isset($check)) {
 if(isset($show_completed)) {
     $show_completed = shielding_data($show_completed);
 
-    switch ($show_completed) {
-        case 0:
-            $show_completed = 0;
-            break;
-        case 1:
-            $show_completed = 1;
-            break;
-    }
+    $show_completed = $show_completed ? 1 : 0;
 }
 
 ?>

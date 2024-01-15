@@ -1,4 +1,5 @@
 <?php
+//Есть фильтры, к ним еще добавляется условие, показывать выполненные задачи или нет
 $date_filter = filter_input(INPUT_GET, 'date_filter', FILTER_DEFAULT);
 $filters = ['all', 'today', 'tomorrow', 'passed'];
 
