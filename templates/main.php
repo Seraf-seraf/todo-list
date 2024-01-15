@@ -17,7 +17,7 @@
 
         <label class="checkbox" for="show_completed">
             <!--добавить сюда атрибут "checked", если переменная $show_completed равна единице-->
-            <input class="checkbox__input visually-hidden show_completed" id="show_completed" name="show_completed" type="checkbox" <?=$show_completed ? 'checked' : ''?> <?=$date_filter && $date_filter != 'all' ? 'disabled' : ''?>>
+            <input class="checkbox__input visually-hidden show_completed" id="show_completed" name="show_completed" type="checkbox" <?=$show_completed ? 'checked' : ''?>>
             <span class="checkbox__text">Показывать выполненные</span>
         </label>
     </div>
