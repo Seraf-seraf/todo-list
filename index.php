@@ -1,10 +1,10 @@
 <?php
 require_once 'init.php';
 require_once 'get-user-tasks.php';
+require_once 'filters-tasks/complete-task.php';
 require_once 'filters-tasks/tasks-project.php';
 require_once 'filters-tasks/tasks-date.php';
 require_once 'filters-tasks/search-tasks.php';
-require_once 'filters-tasks/complete-task.php';
 
 if (!$user_id) {
     header('Location: /pages/guest-page.php');
