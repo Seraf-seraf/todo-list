@@ -12,42 +12,77 @@ if(isset($date_filter)) {
     }
 
     if($date_filter == 'today') {
-        $sql = 'SELECT TASK.id, TASK.task_name, TASK.date_create, TASK.file_url, TASK.task_completed, TASK.task_deadline '
+        if($show_completed) {
+            $sql = 'SELECT TASK.id, TASK.task_name, TASK.date_create, TASK.file_url, TASK.task_completed, TASK.task_deadline '
              . 'FROM TASK '
              . 'WHERE user_id = ? AND task_deadline = CURDATE() '
              . 'ORDER BY task_completed ASC';
+        } else {
+            $sql = 'SELECT TASK.id, TASK.task_name, TASK.date_create, TASK.file_url, TASK.task_completed, TASK.task_deadline '
+             . 'FROM TASK '
+             . 'WHERE user_id = ? AND task_deadline = CURDATE() AND task_completed = 0 '
+             . 'ORDER BY task_completed ASC';
+        }
         $stmt = mysqli_prepare($connect, $sql);
         mysqli_stmt_bind_param($stmt, 'i', $user_id);
 
     } elseif($date_filter == 'tomorrow') {
-        $sql = 'SELECT TASK.id, TASK.task_name, TASK.date_create, TASK.file_url, TASK.task_completed, TASK.task_deadline '
+        if($show_completed) {
+            $sql = 'SELECT TASK.id, TASK.task_name, TASK.date_create, TASK.file_url, TASK.task_completed, TASK.task_deadline '
              . 'FROM TASK '
              . 'WHERE user_id = ? AND task_deadline = DATE_ADD(CURDATE(), INTERVAL 1 DAY) '
              . 'ORDER BY task_completed ASC';
+        } else {
+            $sql = 'SELECT TASK.id, TASK.task_name, TASK.date_create, TASK.file_url, TASK.task_completed, TASK.task_deadline '
+             . 'FROM TASK '
+             . 'WHERE user_id = ? AND task_deadline = DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND task_completed = 0 '
+             . 'ORDER BY task_completed ASC';
+        }
         $stmt = mysqli_prepare($connect, $sql);
         mysqli_stmt_bind_param($stmt, 'i', $user_id);
 
     } elseif($date_filter == 'passed') {
-        $sql = 'SELECT TASK.id, TASK.task_name, TASK.date_create, TASK.file_url, TASK.task_completed, TASK.task_deadline '
+        if($show_completed) {
+            $sql = 'SELECT TASK.id, TASK.task_name, TASK.date_create, TASK.file_url, TASK.task_completed, TASK.task_deadline '
             .  'FROM TASK '
             .  'WHERE user_id = ? AND task_deadline < CURDATE() '
             .  'ORDER BY task_completed ASC, task_deadline ASC';
+        } else {
+            $sql = 'SELECT TASK.id, TASK.task_name, TASK.date_create, TASK.file_url, TASK.task_completed, TASK.task_deadline '
+            .  'FROM TASK '
+            .  'WHERE user_id = ? AND task_deadline < CURDATE() AND task_completed = 0 '
+            .  'ORDER BY task_completed ASC, task_deadline ASC';
+        }
         $stmt = mysqli_prepare($connect, $sql);
         mysqli_stmt_bind_param($stmt, 'i', $user_id);
 
     } elseif($date_filter == 'all' && !empty($project_name)) {
-        $sql = 'SELECT TASK.id, TASK.task_name, TASK.date_create, TASK.file_url, TASK.task_completed, TASK.task_deadline '
+        if($show_completed) {
+            $sql = 'SELECT TASK.id, TASK.task_name, TASK.date_create, TASK.file_url, TASK.task_completed, TASK.task_deadline '
             .  'FROM TASK '
             .  'JOIN PROJECT ON PROJECT.id = TASK.project_id '
             .  'WHERE TASK.user_id = ? AND PROJECT.project_name = ? '
             .  'ORDER BY task_completed ASC, task_deadline ASC';
+        } else {
+            $sql = 'SELECT TASK.id, TASK.task_name, TASK.date_create, TASK.file_url, TASK.task_completed, TASK.task_deadline '
+            .  'FROM TASK '
+            .  'JOIN PROJECT ON PROJECT.id = TASK.project_id '
+            .  'WHERE TASK.user_id = ? AND PROJECT.project_name = ? AND task_completed = 0 '
+            .  'ORDER BY task_completed ASC, task_deadline ASC';
+        }
         $stmt = mysqli_prepare($connect, $sql);
         mysqli_stmt_bind_param($stmt, 'is', $user_id, $project_name);
 
     } elseif($date_filter == 'all') {
-        $sql = 'SELECT TASK.id, TASK.task_name, TASK.date_create, TASK.file_url, TASK.task_completed, TASK.task_deadline '
+        if($show_completed) {
+            $sql = 'SELECT TASK.id, TASK.task_name, TASK.date_create, TASK.file_url, TASK.task_completed, TASK.task_deadline '
             .  'FROM TASK WHERE user_id = ? '
             .  'ORDER BY task_completed ASC, task_deadline ASC';
+        } else {
+            $sql = 'SELECT TASK.id, TASK.task_name, TASK.date_create, TASK.file_url, TASK.task_completed, TASK.task_deadline '
+            .  'FROM TASK WHERE user_id = ? AND task_completed = 0 '
+            .  'ORDER BY task_completed ASC, task_deadline ASC';
+        }
         $stmt = mysqli_prepare($connect, $sql);
         mysqli_stmt_bind_param($stmt, 'i', $user_id);
     }

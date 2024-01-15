@@ -108,8 +108,8 @@ function validate_value_string($value, $min, $max, $bool = null) {
                 }
             }
         }
-    
-        $len = strlen($value);
+
+        $len = mb_strlen($value);
         if ($len < $min or $len > $max) {
             return "Значение должно иметь длину от $min до $max символов";
         }
@@ -378,7 +378,7 @@ function validate_create_project($connect, $user_id, $project_name) {
 
     $min = 3;
     $max = 64;
-    $value = strlen($project_name);
+    $value = mb_strlen($project_name);
     if ($value < $min or $value > $max) {
         return "Пожалуйста, введите название проекта от $min до $max символов в длину.";
     }
