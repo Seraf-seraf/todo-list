@@ -10,10 +10,6 @@ if(isset($date_filter)) {
     if(!in_array($date_filter, $filters)) {
         showError404Page();
     }
-    // так как фильтр по дате для всех задач (по тз), не даю пользователю скрывать выполненные задачи если фильтр != все задачи
-    if($show_completed == 0 && $date_filter != 'all') {
-        $show_completed = 1;
-    }
 
     if($date_filter == 'today') {
         $sql = 'SELECT TASK.id, TASK.task_name, TASK.date_create, TASK.file_url, TASK.task_completed, TASK.task_deadline '
