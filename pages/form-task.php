@@ -35,37 +35,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $errors = get_errors_messages($task, $required, $rules);
 
-    if (!empty($_FILES['file']['name'])) {
-        $tmp_name = $_FILES['file']['tmp_name'];
-        $path = $_FILES['file']['tmp_name'];
-
-        $finfo = finfo_open(FILEINFO_MIME_TYPE);
-        $file_type = finfo_file($finfo, $tmp_name);
-
-        if ($file_type == 'image/jpeg') {
-            $extension = '.jpeg';
-        } else if ($file_type == 'image/png') {
-            $extension = '.png';
-        } else {
-            $errors['file'] = 'Допустимые форматы файлов: png, jpg';
-        }
-
-        if (isset($extension)) {
-            $filename = uniqid() . $extension;
-            $task['path'] = 'uploads/' . $filename;
-            move_uploaded_file($_FILES['file']['tmp_name'], '../uploads/' . $filename);
-        }
-    }
-
     $errors = array_filter($errors);
 
     if (count($errors) === 0) {
-        $project_id = get_id_project($connect, $task['project'], $user_id);
+        if (!empty($_FILES['file']['name'])) {
+            $tmp_name = $_FILES['file']['tmp_name'];
+            $path = $_FILES['file']['tmp_name'];
+    
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $file_type = finfo_file($finfo, $tmp_name);
 
-        create_task($connect, $project_id, $user_id, $task);
+            switch ($file_type) {
+                case 'image/jpeg':
+                    $extension = '.jpeg';
+                    break;
+                case 'image/png':
+                    $extension = '.png';
+                    break;
+                default:
+                    $errors['file'] = 'Допустимые форматы файлов: png, jpg';
+            }
+    
+            if (isset($extension)) {
+                $filename = uniqid() . $extension;
+                $task['path'] = 'uploads/' . $filename;
+                move_uploaded_file($_FILES['file']['tmp_name'], '../uploads/' . $filename);
+            }
+        }
 
-        header('Location: ../index.php');
-        die();
+        if (count($errors) === 0) {
+            $project_id = get_id_project($connect, $task['project'], $user_id);
+
+            create_task($connect, $project_id, $user_id, $task);
+    
+            header('Location: ../index.php');
+            die();
+        }
     }
 }
 
