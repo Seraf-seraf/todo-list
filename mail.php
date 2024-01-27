@@ -3,7 +3,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 require_once 'database.php';
 require_once 'functions.php';
-require_once '/home/f0903978/vendor/autoload.php';
+require_once 'vendor/autoload.php';
 
 $phpmailer = new PHPMailer();
 

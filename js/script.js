@@ -1,4 +1,3 @@
-p
 const $checkbox = document.querySelector('.show_completed');
 
 if ($checkbox) {
