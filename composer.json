@@ -3,7 +3,7 @@
     "description": "Веб-приложение списка дел",
     "autoload": {
         "psr-4": {
-            "User\\Todos\\": "src/"
+            "Todos\\": "src/"
         }
     },
     "authors": [
