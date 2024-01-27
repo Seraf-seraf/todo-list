@@ -48,7 +48,7 @@
         <label class="form__label" for="file">Файл</label>
 
         <div class="form__input-file">
-          <input class="visually-hidden" type="file" name="file" id="file" accept="image/png, image/jpeg" value="<?=isset($task['file']) ? $task['file'] : ''?>" autocomplete="off">
+          <input class="visually-hidden" type="file" name="file" id="file" accept="image/png, image/jpeg">
           <label class="button button--transparent" for="file">
             <span>Выберите файл</span>
           </label>
