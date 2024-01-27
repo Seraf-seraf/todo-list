@@ -3,7 +3,7 @@
     "description": "Веб-приложение списка дел",
     "autoload": {
         "psr-4": {
-            "Todos\\": "src/"
+            "User\\Todos\\": "src/"
         }
     },
     "authors": [
@@ -13,7 +13,7 @@
         }
     ],
     "require": {
-        "php": "^8.1",
+        "php": "^7.4",
         "phpmailer/phpmailer": "^6.9"
     }
 }
