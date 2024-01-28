@@ -6,13 +6,13 @@ require_once 'functions.php';
 require_once 'vendor/autoload.php';
 
 $phpmailer = new PHPMailer();
-
 $phpmailer->CharSet = 'utf-8';
 $phpmailer->isSMTP();
-$phpmailer->Host = ;
-$phpmailer->SMTPAuth = true;
 
-$phpmailer->Port = ;
+$phpmailer->Host = '';
+$phpmailer->SMTPAuth = true;
+$phpmailer->Port = 25;
+
 $phpmailer->Username = '';
 $phpmailer->Password = '';
 
