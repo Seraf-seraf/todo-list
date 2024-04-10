@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($extension)) {
                 $filename = uniqid() . $extension;
                 $task['path'] = 'uploads/' . $filename;
-                move_uploaded_file($_FILES['file']['tmp_name'], '../uploads/' . $filename);
+                move_uploaded_file($path, '../uploads/' . $filename);
             }
         }
 
